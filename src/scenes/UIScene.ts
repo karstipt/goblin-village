@@ -1,0 +1,10 @@
+import Phaser from 'phaser';
+
+export class UIScene extends Phaser.Scene {
+  constructor() { super({ key: 'UIScene' }); }
+
+  create() {
+    // TODO: HUD / Ressourcenanzeige
+    // Wird in Phase 1 ausgebaut
+  }
+}

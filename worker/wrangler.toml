@@ -1,0 +1,26 @@
+name = "goblin-village-api"
+main = "src/index.ts"
+compatibility_date = "2026-01-01"
+
+[[kv_namespaces]]
+binding = "PLAYER_DATA"
+id = "DEINE_KV_ID"        # Nach 'wrangler kv:namespace create PLAYER_DATA' ersetzen
+preview_id = "DEINE_PREVIEW_KV_ID"
+
+[[durable_objects.bindings]]
+name = "VILLAGE_STATE"
+class_name = "VillageState"
+
+[[durable_objects.bindings]]
+name = "GAME_ROOM"
+class_name = "GameRoom"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["VillageState", "GameRoom"]
+
+[env.production]
+name = "goblin-village-api-prod"
+
+[env.preview]
+name = "goblin-village-api-preview"
