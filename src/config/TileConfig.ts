@@ -1,12 +1,11 @@
-export const TILE_SIZE = 64;
-export const MAP_WIDTH = 20;   // Kacheln horizontal
-export const MAP_HEIGHT = 12;  // Kacheln vertikal
+export const TILE_SIZE   = 64;
+export const MAP_WIDTH   = 20;
+export const MAP_HEIGHT  = 14;
 
-export const TileType = {
-  GRASS: 0,
-  GRASS_DARK: 1,
-  DIRT: 2,
-  WATER: 3,
+// Dorfbereich (Zaun-Innenraum) in Tile-Koordinaten
+export const VILLAGE = {
+  x: 6,   // linke Kante
+  y: 3,   // obere Kante
+  w: 8,   // Breite in Tiles
+  h: 8,   // Höhe in Tiles
 } as const;
-
-export type TileType = typeof TileType[keyof typeof TileType];
