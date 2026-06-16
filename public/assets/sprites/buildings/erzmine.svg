@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" width="300" height="340">
+
+  <ellipse cx="150" cy="325" rx="130" ry="22" fill="#3a2a1a" opacity="0.18"/>
+
+  <ellipse cx="150" cy="295" rx="128" ry="38" fill="#8B6340"/>
+  <ellipse cx="150" cy="290" rx="120" ry="32" fill="#A0744E"/>
+  <ellipse cx="150" cy="285" rx="110" ry="26" fill="#B8895C"/>
+
+  <ellipse cx="100" cy="291" rx="12" ry="5" fill="#FF7043" opacity="0.6"/>
+  <ellipse cx="185" cy="295" rx="9" ry="4" fill="#FF5722" opacity="0.5"/>
+  <ellipse cx="155" cy="281" rx="8" ry="3" fill="#FFAB40" opacity="0.55"/>
+
+  <ellipse cx="150" cy="210" rx="52" ry="18" fill="#2C1A0E"/>
+
+  <path d="M98,285 Q98,195 150,185 Q202,195 202,285" fill="#1a0f07"/>
+
+  <path d="M98,285 Q98,195 150,185 L150,200 Q105,207 105,285 Z" fill="#5D3A1A"/>
+  <path d="M202,285 Q202,195 150,185 L150,200 Q195,207 195,285 Z" fill="#3E2410"/>
+
+  <ellipse cx="150" cy="285" rx="47" ry="12" fill="#2C1A0E"/>
+
+  <rect x="88" y="177" width="124" height="16" rx="4" fill="#8B5E3C"/>
+  <rect x="88" y="177" width="124" height="7" rx="4" fill="#A0744E"/>
+  <rect x="84" y="173" width="12" height="115" rx="3" fill="#6B4423"/>
+  <rect x="84" y="173" width="12" height="6" rx="3" fill="#8B5E3C"/>
+  <rect x="204" y="173" width="12" height="115" rx="3" fill="#6B4423"/>
+  <rect x="204" y="173" width="12" height="6" rx="3" fill="#8B5E3C"/>
+
+  <rect x="100" y="217" width="100" height="12" rx="3" fill="#7A4F2A"/>
+  <rect x="100" y="217" width="100" height="5" rx="3" fill="#9B6840"/>
+  <rect x="97" y="213" width="10" height="74" rx="2" fill="#5C3318"/>
+  <rect x="193" y="213" width="10" height="74" rx="2" fill="#5C3318"/>
+
+  <path d="M110,225 Q118,235 112,250" stroke="#FF7043" stroke-width="3" fill="none" opacity="0.8"/>
+  <path d="M115,240 Q122,245 118,257" stroke="#FFAB40" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M185,230 Q178,240 183,253" stroke="#FF5722" stroke-width="3" fill="none" opacity="0.8"/>
+  <circle cx="112" cy="250" r="5" fill="#FF7043" opacity="0.85"/>
+  <circle cx="118" cy="257" r="4" fill="#FFAB40" opacity="0.75"/>
+  <circle cx="183" cy="253" r="5" fill="#FF5722" opacity="0.85"/>
+  <circle cx="110" cy="225" r="3" fill="#FFCC02" opacity="0.7"/>
+  <circle cx="186" cy="231" r="3" fill="#FFCC02" opacity="0.65"/>
+
+  <rect x="126" y="253" width="48" height="28" rx="3" fill="#607D8B"/>
+  <rect x="126" y="253" width="48" height="10" rx="3" fill="#78909C"/>
+  <rect x="129" y="256" width="42" height="4" rx="1" fill="#90A4AE" opacity="0.6"/>
+  <ellipse cx="150" cy="255" rx="20" ry="7" fill="#8D6E63"/>
+  <circle cx="142" cy="252" r="5" fill="#FF7043" opacity="0.9"/>
+  <circle cx="152" cy="250" r="4" fill="#FF5722" opacity="0.85"/>
+  <circle cx="159" cy="253" r="4" fill="#FFAB40" opacity="0.8"/>
+  <circle cx="146" cy="248" r="3" fill="#FFCC02" opacity="0.75"/>
+  <circle cx="135" cy="282" r="8" fill="#455A64"/>
+  <circle cx="135" cy="282" r="4" fill="#607D8B"/>
+  <circle cx="165" cy="282" r="8" fill="#455A64"/>
+  <circle cx="165" cy="282" r="4" fill="#607D8B"/>
+
+  <rect x="90" y="287" width="120" height="4" rx="2" fill="#5D4037"/>
+  <rect x="90" y="293" width="120" height="4" rx="2" fill="#5D4037"/>
+  <rect x="93" y="285" width="6" height="14" rx="1" fill="#4E342E"/>
+  <rect x="107" y="285" width="6" height="14" rx="1" fill="#4E342E"/>
+  <rect x="121" y="285" width="6" height="14" rx="1" fill="#4E342E"/>
+  <rect x="135" y="285" width="6" height="14" rx="1" fill="#4E342E"/>
+  <rect x="149" y="285" width="6" height="14" rx="1" fill="#4E342E"/>
+  <rect x="163" y="285" width="6" height="14" rx="1" fill="#4E342E"/>
+  <rect x="177" y="285" width="6" height="14" rx="1" fill="#4E342E"/>
+  <rect x="191" y="285" width="6" height="14" rx="1" fill="#4E342E"/>
+
+  <rect x="122" y="153" width="56" height="22" rx="4" fill="#8B5E3C"/>
+  <rect x="122" y="153" width="56" height="9" rx="4" fill="#A0744E"/>
+  <text x="150" y="168" text-anchor="middle" font-size="11" fill="#FFE0B2" font-family="sans-serif" font-weight="bold">ERZMINE</text>
+
+  <circle cx="138" cy="143" r="8" fill="#9E9E9E" opacity="0.2"/>
+  <circle cx="150" cy="133" r="11" fill="#BDBDBD" opacity="0.15"/>
+  <circle cx="163" cy="140" r="7" fill="#9E9E9E" opacity="0.18"/>
+
+</svg>
