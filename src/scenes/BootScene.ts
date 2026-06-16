@@ -11,6 +11,7 @@ export class BootScene extends Phaser.Scene {
     this.load.image('icon-metall',    'assets/sprites/ui/metall.svg');
     this.load.image('icon-nahrung',   'assets/sprites/ui/nahrung.svg');
     this.load.image('icon-diamanten', 'assets/sprites/ui/diamanten.svg');
+    this.load.image('erzmine', 'assets/sprites/buildings/erzmine.svg');
   }
 
   create() {
