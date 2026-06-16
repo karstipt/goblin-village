@@ -109,6 +109,10 @@ export class GameScene extends Phaser.Scene {
     crystal.on('pointerover',  () => crystal.setTint(0xddaaff));
     crystal.on('pointerout',   () => crystal.clearTint());
 
+    // ── Erzmine ────────────────────────────────────────────────────────
+    const mine = this.add.image(fenceX - 160, fenceY + 60, 'erzmine');
+    mine.setDisplaySize(160, 180);
+
     // ── Kamera ────────────────────────────────────────────────────────
     this.cameras.main.centerOn(fenceX, fenceY);
 
