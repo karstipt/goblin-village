@@ -84,21 +84,23 @@ export class GameScene extends Phaser.Scene {
     });
 
     // Puls beim Klick
-    crystal.on('pointerdown', () => {
     const baseScale = crystal.scaleX;
-    this.tweens.add({
-      targets: crystal,
-      scaleX: baseScale * 1.3,
-      scaleY: baseScale * 1.3,
-      duration: 120,
-      yoyo: true,
-      ease: 'Quad.easeOut',
-      onComplete: () => {
-        crystal.setScale(baseScale);
-      }
+    
+    crystal.on('pointerdown', () => {
+      this.tweens.killTweensOf(crystal);
+      crystal.setScale(baseScale);
+      this.tweens.add({
+        targets: crystal,
+        scaleX: baseScale * 1.3,
+        scaleY: baseScale * 1.3,
+        duration: 120,
+        yoyo: true,
+        ease: 'Quad.easeOut',
+        onComplete: () => {
+          crystal.setScale(baseScale);
+        }
+      });
     });
-  console.log('Kristall aktiviert!');
-  });
 
     // Hover-Glow
     crystal.on('pointerover',  () => crystal.setTint(0xddaaff));
