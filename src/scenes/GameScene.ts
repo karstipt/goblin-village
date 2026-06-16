@@ -61,7 +61,7 @@ export class GameScene extends Phaser.Scene {
     // Zaun auf Dorfgröße skalieren (512 × 512 Sprite)
     const targetW = VILLAGE.w * TILE_SIZE;
     const targetH = VILLAGE.h * TILE_SIZE;
-    fence.setDisplaySize(targetW, targetH);
+    fence.setDisplaySize(targetW * 1.4, targetH * 1.4);
 
     // Weißen Hintergrund des Sprites ausblenden
     fence.setAlpha(0.97);
