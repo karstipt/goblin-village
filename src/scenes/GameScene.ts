@@ -68,13 +68,13 @@ export class GameScene extends Phaser.Scene {
 
     // ── Kristall-Sprite (Dorfmittelpunkt) ─────────────────────────────
     const crystalX = fenceX;
-    const crystalY = fenceY - TILE_SIZE * 0.5;   // leicht nach oben versetzt
+    const crystalY = fenceY - TILE_SIZE * 0.5;
     const crystal  = this.add.image(crystalX, crystalY, 'kristall');
     crystal.setDisplaySize(96, 96);
     crystal.setInteractive({ useHandCursor: true });
-
-    // Sanftes Schweben
-    this.tweens.add({
+    
+    // Schwebe-Tween in Variable speichern
+    const floatTween = this.tweens.add({
       targets: crystal,
       y: crystalY - 8,
       duration: 1800,
@@ -82,14 +82,17 @@ export class GameScene extends Phaser.Scene {
       yoyo: true,
       repeat: -1,
     });
-
-    // Puls beim Klick
+    
     const baseScale = crystal.scaleX;
+    let pulseTween: Phaser.Tweens.Tween | null = null;
     
     crystal.on('pointerdown', () => {
-      this.tweens.killTweensOf(crystal);
-      crystal.setScale(baseScale);
-      this.tweens.add({
+      // Nur Puls-Tween stoppen, nicht den Schwebe-Tween
+      if (pulseTween) {
+        pulseTween.stop();
+        crystal.setScale(baseScale);
+      }
+      pulseTween = this.tweens.add({
         targets: crystal,
         scaleX: baseScale * 1.3,
         scaleY: baseScale * 1.3,
@@ -98,11 +101,11 @@ export class GameScene extends Phaser.Scene {
         ease: 'Quad.easeOut',
         onComplete: () => {
           crystal.setScale(baseScale);
+          pulseTween = null;
         }
       });
     });
-
-    // Hover-Glow
+    
     crystal.on('pointerover',  () => crystal.setTint(0xddaaff));
     crystal.on('pointerout',   () => crystal.clearTint());
 
