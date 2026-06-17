@@ -16,6 +16,7 @@ export class BootScene extends Phaser.Scene {
     this.load.image('schmiede',          'assets/sprites/buildings/schmiede.svg');
     this.load.image('forschungszentrum', 'assets/sprites/buildings/forschungszentrum.svg');
     this.load.image('werkstatt',         'assets/sprites/buildings/werkstatt.svg');
+    this.load.image('dorf', 'assets/sprites/buildings/dorf2.png');
   }
 
   create() {
