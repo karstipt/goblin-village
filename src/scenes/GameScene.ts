@@ -80,7 +80,7 @@ export class GameScene extends Phaser.Scene {
     const fenceX = VILLAGE.x * TILE_SIZE + (VILLAGE.w * TILE_SIZE) / 2;
     const fenceY = VILLAGE.y * TILE_SIZE + (VILLAGE.h * TILE_SIZE) / 2;
     const village = this.add.image(fenceX, fenceY, 'dorf');
-    village.setDisplaySize(VILLAGE.w * TILE_SIZE * 1.4, VILLAGE.h * TILE_SIZE * 1.4);
+    village.setDisplaySize(VILLAGE.w * TILE_SIZE * 2, VILLAGE.h * TILE_SIZE * 1.4);
 
     // ── Hotspots ──────────────────────────────────────────────────────
     const vW = village.displayWidth;
