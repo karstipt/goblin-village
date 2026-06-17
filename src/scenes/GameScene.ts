@@ -110,40 +110,6 @@ export class GameScene extends Phaser.Scene {
       });
     });
 
-    // ── Kristall (Dorfmittelpunkt) ────────────────────────────────────
-    const crystalX = fenceX;
-    const crystalY = fenceY - TILE_SIZE * 0.5;
-    const crystal  = this.add.image(crystalX, crystalY, 'kristall');
-    crystal.setDisplaySize(80, 80);
-    crystal.setInteractive({ useHandCursor: true });
-
-    const floatTween = this.tweens.add({
-      targets: crystal,
-      y: crystalY - 8,
-      duration: 1800,
-      ease: 'Sine.easeInOut',
-      yoyo: true,
-      repeat: -1,
-    });
-
-    const baseScale = crystal.scaleX;
-    let pulseTween: Phaser.Tweens.Tween | null = null;
-
-    crystal.on('pointerdown', () => {
-      if (pulseTween) { pulseTween.stop(); crystal.setScale(baseScale); }
-      pulseTween = this.tweens.add({
-        targets: crystal,
-        scaleX: baseScale * 1.3,
-        scaleY: baseScale * 1.3,
-        duration: 120,
-        yoyo: true,
-        ease: 'Quad.easeOut',
-        onComplete: () => { crystal.setScale(baseScale); pulseTween = null; },
-      });
-    });
-    crystal.on('pointerover', () => crystal.setTint(0xddaaff));
-    crystal.on('pointerout',  () => crystal.clearTint());
-
     // ── Gebäude-Menü ─────────────────────────────────────────────────
     this.createMenu();
 
