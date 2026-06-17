@@ -36,38 +36,45 @@ export class GameScene extends Phaser.Scene {
 
     this.cameras.main.setBounds(0, 0, W, H);
 
-    // ── Hintergrund-Gras ─────────────────────────────────────────────
+        // ── Hintergrund ───────────────────────────────────────────────────
     const bg = this.add.graphics();
-    for (let y = 0; y < MAP_HEIGHT; y++) {
-      for (let x = 0; x < MAP_WIDTH; x++) {
-        const isWater = x === 0 || x === MAP_WIDTH - 1 || y === 0 || y === MAP_HEIGHT - 1;
-        const isVillage =
-          x >= VILLAGE.x && x < VILLAGE.x + VILLAGE.w &&
-          y >= VILLAGE.y && y < VILLAGE.y + VILLAGE.h;
-        let color: number;
-        if (isWater)        color = (x + y) % 2 === 0 ? 0x4A90D9 : 0x5599E0;
-        else if (isVillage) color = (x + y) % 2 === 0 ? 0x8FD44A : 0x9ADE52;
-        else                color = (x + y) % 2 === 0 ? 0x7EC850 : 0x89D455;
-        bg.fillStyle(color, 1);
-        bg.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-        if (isWater) {
-          bg.lineStyle(1, 0xffffff, 0.25);
-          bg.beginPath();
-          bg.moveTo(x * TILE_SIZE + 8,  y * TILE_SIZE + TILE_SIZE / 2);
-          bg.lineTo(x * TILE_SIZE + 24, y * TILE_SIZE + TILE_SIZE / 2 - 4);
-          bg.lineTo(x * TILE_SIZE + 40, y * TILE_SIZE + TILE_SIZE / 2);
-          bg.strokePath();
-        }
-        if (!isVillage && !isWater && Math.random() < 0.25) {
-          bg.fillStyle(0x5FA832, 0.5);
-          bg.fillRect(
-            x * TILE_SIZE + Phaser.Math.Between(4, 52),
-            y * TILE_SIZE + Phaser.Math.Between(4, 52),
-            3, 9
-          );
-        }
-      }
-    }
+    
+    // Dunkler Boden
+    bg.fillStyle(0x1a1a2e, 1);
+    bg.fillRect(0, 0, W, H);
+    
+    // Nebel-Wolken (mehrere überlagerte Ellipsen)
+    const fogColors = [0x2a3a4a, 0x1e2e3e, 0x263545, 0x1a2a3a];
+    const fogBlobs = [
+      { x: 0.1, y: 0.3, rx: 0.25, ry: 0.18 },
+      { x: 0.3, y: 0.6, rx: 0.30, ry: 0.20 },
+      { x: 0.5, y: 0.2, rx: 0.28, ry: 0.16 },
+      { x: 0.6, y: 0.7, rx: 0.35, ry: 0.22 },
+      { x: 0.8, y: 0.4, rx: 0.26, ry: 0.18 },
+      { x: 0.9, y: 0.8, rx: 0.20, ry: 0.15 },
+      { x: 0.2, y: 0.85, rx: 0.30, ry: 0.16 },
+      { x: 0.7, y: 0.15, rx: 0.25, ry: 0.14 },
+      { x: 0.45, y: 0.5, rx: 0.40, ry: 0.25 },
+    ];
+    
+    fogBlobs.forEach((f, i) => {
+      bg.fillStyle(fogColors[i % fogColors.length], 0.35);
+      bg.fillEllipse(f.x * W, f.y * H, f.rx * W * 2, f.ry * H * 2);
+    });
+    
+    // Zweite Nebelschicht (heller, dünner)
+    const fogBlobs2 = [
+      { x: 0.25, y: 0.45, rx: 0.22, ry: 0.14 },
+      { x: 0.55, y: 0.35, rx: 0.28, ry: 0.16 },
+      { x: 0.75, y: 0.65, rx: 0.24, ry: 0.18 },
+      { x: 0.15, y: 0.7,  rx: 0.20, ry: 0.12 },
+      { x: 0.85, y: 0.25, rx: 0.22, ry: 0.14 },
+    ];
+    
+    fogBlobs2.forEach(f => {
+      bg.fillStyle(0x3a4a5a, 0.25);
+      bg.fillEllipse(f.x * W, f.y * H, f.rx * W * 2, f.ry * H * 2);
+    });
 
     // ── Dorfbild ─────────────────────────────────────────────────────
     const fenceX = VILLAGE.x * TILE_SIZE + (VILLAGE.w * TILE_SIZE) / 2;
