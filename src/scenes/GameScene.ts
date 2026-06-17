@@ -187,41 +187,47 @@ export class GameScene extends Phaser.Scene {
 
   // ── Menü erstellen ────────────────────────────────────────────────
   private createMenu() {
-    const mW = 280, mH = 200;
+    const mW = 320, mH = 260;
+  
     this.menuBg = this.add.graphics();
-    this.menuBg.fillStyle(0x1a1a2e, 0.95);
-    this.menuBg.fillRoundedRect(0, 0, mW, mH, 10);
+    this.menuBg.fillStyle(0x1a1a2e, 0.97);
+    this.menuBg.fillRoundedRect(0, 0, mW, mH, 12);
     this.menuBg.lineStyle(2, 0x9B59B6, 1);
-    this.menuBg.strokeRoundedRect(0, 0, mW, mH, 10);
-
+    this.menuBg.strokeRoundedRect(0, 0, mW, mH, 12);
+  
+    // Titelleiste
+    const titleBar = this.add.graphics();
+    titleBar.fillStyle(0x2e1a4e, 1);
+    titleBar.fillRoundedRect(0, 0, mW, 40, { tl: 12, tr: 12, bl: 0, br: 0 });
+  
     this.menuTitle = this.add.text(mW / 2, 20, '', {
       fontSize: '16px', color: '#F0C040',
       fontFamily: 'sans-serif', fontStyle: 'bold',
-    }).setOrigin(0.5, 0);
-
+    }).setOrigin(0.5);
+  
     this.menuDesc = this.add.text(16, 52, '', {
-      fontSize: '12px', color: '#ccccdd',
+      fontSize: '12px', color: '#aaaacc',
       fontFamily: 'sans-serif', wordWrap: { width: mW - 32 },
     });
-
-    // Buttons
-    const btnUpgrade  = this.makeMenuBtn(16,  130, 116, 'Ausbauen 🔨');
-    const btnInfo     = this.makeMenuBtn(148, 130, 116, 'Info 📋');
-    const btnProduce  = this.makeMenuBtn(16,  162, 116, 'Produzieren ⚙️');
-    const btnClose    = this.makeMenuBtn(148, 162, 116, 'Schließen ✕');
-
-    btnClose.on('pointerdown', () => this.closeMenu());
-
-    this.menuClose = this.add.text(mW - 12, 8, '✕', {
-      fontSize: '14px', color: '#888899', fontFamily: 'sans-serif',
+  
+    const btnUpgrade = this.makeMenuBtn(16,  148, 136, '🔨 Ausbauen');
+    const btnInfo    = this.makeMenuBtn(168, 148, 136, '📋 Info');
+    const btnProduce = this.makeMenuBtn(16,  196, 136, '⚙️ Produzieren');
+    const btnClose   = this.makeMenuBtn(168, 196, 136, '✕ Schließen');
+  
+    btnClose.getAt(2).on('pointerdown', () => this.closeMenu());
+  
+    this.menuClose = this.add.text(mW - 14, 10, '✕', {
+      fontSize: '14px', color: '#9B59B6', fontFamily: 'sans-serif',
     }).setOrigin(1, 0).setInteractive({ useHandCursor: true });
     this.menuClose.on('pointerdown', () => this.closeMenu());
-
+  
     this.menu = this.add.container(0, 0, [
-      this.menuBg, this.menuTitle, this.menuDesc,
+      this.menuBg, titleBar, this.menuTitle, this.menuDesc,
       btnUpgrade, btnInfo, btnProduce, btnClose, this.menuClose,
     ]);
     this.menu.setDepth(20);
+    this.menu.setScrollFactor(0);  // bleibt fix auf dem Bildschirm
     this.menu.setVisible(false);
   }
 
@@ -248,23 +254,26 @@ export class GameScene extends Phaser.Scene {
     this.activeKey = b.key;
     this.menuTitle.setText(b.label);
     this.menuDesc.setText(b.desc);
-
-    // Menü neben dem Gebäude positionieren
-    const cam   = this.cameras.main;
-    const vLeft = (VILLAGE.x * TILE_SIZE + (VILLAGE.w * TILE_SIZE) / 2)
-                  - (VILLAGE.w * TILE_SIZE * 1.4) / 2;
-    const vTop  = (VILLAGE.y * TILE_SIZE + (VILLAGE.h * TILE_SIZE) / 2)
-                  - (VILLAGE.h * TILE_SIZE * 1.4) / 2;
-    const hx = vLeft + (b.xPct / 100) * (VILLAGE.w * TILE_SIZE * 1.4);
-    const hy = vTop  + (b.yPct / 100) * (VILLAGE.h * TILE_SIZE * 1.4);
-
-    const mX = Phaser.Math.Clamp(hx + 80, cam.scrollX + 10, cam.scrollX + cam.width  - 290);
-    const mY = Phaser.Math.Clamp(hy - 100, cam.scrollY + 10, cam.scrollY + cam.height - 210);
-
+  
+    // Popup zentriert auf dem Bildschirm
+    const cam = this.cameras.main;
+    const mW = 320, mH = 260;
+    const mX = cam.scrollX + (cam.width  - mW) / 2;
+    const mY = cam.scrollY + (cam.height - mH) / 2;
+  
     this.menu.setPosition(mX, mY);
     this.menu.setVisible(true);
+  
+    // Einblend-Animation
+    this.menu.setScale(0.85);
+    this.menu.setAlpha(0);
+    this.tweens.add({
+      targets: this.menu,
+      scaleX: 1, scaleY: 1, alpha: 1,
+      duration: 150,
+      ease: 'Back.easeOut',
+    });
   }
-
   private closeMenu() {
     this.menu.setVisible(false);
     this.activeKey = null;
