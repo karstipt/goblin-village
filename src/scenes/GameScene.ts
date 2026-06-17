@@ -98,17 +98,11 @@ export class GameScene extends Phaser.Scene {
 
       // Hover-Highlight
       zone.on('pointerover', () => {
-        zone.setFillStyle(0xffff00, 0.18);
         this.showTooltip(hx, hy - b.h / 2 - 16, b.label);
       });
       zone.on('pointerout', () => {
-        zone.setFillStyle(0xffffff, 0);
         this.hideTooltip();
       });
-      zone.on('pointerdown', () => {
-        this.openMenu(b);
-      });
-    });
 
     // ── Gebäude-Menü ─────────────────────────────────────────────────
     this.createMenu();
@@ -137,13 +131,27 @@ export class GameScene extends Phaser.Scene {
 
   private showTooltip(x: number, y: number, text: string) {
     if (this.tooltip) this.tooltip.destroy();
+  
     const bg = this.add.graphics();
-    bg.fillStyle(0x1a1a2e, 0.85);
-    bg.fillRoundedRect(-60, -14, 120, 28, 6);
+    bg.fillStyle(0x1a1a2e, 0.92);
+    bg.fillRoundedRect(-70, -16, 140, 32, 8);
+    bg.lineStyle(1, 0x9B59B6, 0.8);
+    bg.strokeRoundedRect(-70, -16, 140, 32, 8);
+  
     const t = this.add.text(0, 0, text, {
-      fontSize: '13px', color: '#ffffff', fontFamily: 'sans-serif',
+      fontSize: '13px', color: '#F0C040',
+      fontFamily: 'sans-serif', fontStyle: 'bold',
     }).setOrigin(0.5);
-    this.tooltip = this.add.container(x, y, [bg, t]);
+  
+    const clickZone = this.add.rectangle(0, 0, 140, 32, 0xffffff, 0)
+      .setInteractive({ useHandCursor: true });
+  
+    clickZone.on('pointerdown', () => {
+      const building = BUILDINGS.find(b => b.label === text);
+      if (building) this.openMenu(building);
+    });
+  
+    this.tooltip = this.add.container(x, y, [bg, t, clickZone]);
     this.tooltip.setDepth(10);
   }
 
